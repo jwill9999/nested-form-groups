@@ -1,0 +1,83 @@
+<div class="container wrapper">
+    <h3>Name</h3>
+    <form
+        [formGroup]="profileForm"
+        autocomplete="false"
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="mt-3">
+            <label class="form-label">
+                First Name:
+                <input
+                    class="form-control form-control-lg"
+                    type="text"
+                    formControlName="firstName"
+                />
+            </label>
+        </div>
+        <div class="mt-3">
+            <label class="form-label">
+                Last Name:
+                <input
+                    class="form-control form-control-lg"
+                    type="text"
+                    formControlName="lastName"
+                />
+            </label>
+        </div>
+        <div class="mt-3" formGroupName="address">
+            <h3>Address</h3>
+            <div class="mt-3">
+                <label class="form-label">
+                    Street:
+                    <input
+                        class="form-control form-control-lg"
+                        type="text"
+                        formControlName="street"
+                    />
+                </label>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">
+                    City:
+                    <input
+                        class="form-control form-control-lg"
+                        type="text"
+                        formControlName="city"
+                    />
+                </label>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">
+                    State:
+                    <input
+                        class="form-control form-control-lg"
+                        type="text"
+                        formControlName="state"
+                    />
+                </label>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">
+                    Zip Code:
+                    <input
+                        class="form-control form-control-lg"
+                        type="text"
+                        formControlName="zip"
+                    />
+                </label>
+            </div>
+        </div>
+        <button
+            class="btn btn-primary mt-3"
+            type="submit"
+            [disabled]="!profileForm.valid"
+        >
+            Submit
+        </button>
+    </form>
+</div>
+
+<h3 class="mt-5">Form results</h3>
+<pre>{{ profileForm.value | json }}</pre>
+<p>Form Status: {{ profileForm.valid | json }}</p>
