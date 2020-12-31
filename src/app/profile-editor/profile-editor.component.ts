@@ -14,6 +14,7 @@ import {
     styleUrls: ['./profile-editor.component.scss'],
 })
 export class ProfileEditorComponent {
+    constructor(private fb: FormBuilder) {}
     profileForm = new FormGroup({
         firstName: new FormControl('', [
             Validators.required,
