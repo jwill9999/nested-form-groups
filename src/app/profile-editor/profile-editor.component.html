@@ -5,79 +5,91 @@
         autocomplete="false"
         (ngSubmit)="onSubmit()"
     >
-        <div class="mt-3">
-            <label class="form-label">
-                First Name:
-                <input
-                    class="form-control form-control-lg"
-                    type="text"
-                    formControlName="firstName"
-                />
-            </label>
+        <div class="form-group mt-3">
+            <label class="form-label"> First Name: </label>
+            <input
+                class="form-control"
+                type="text"
+                formControlName="firstName"
+                placeholder="First Name"
+            />
         </div>
-        <div class="mt-3">
-            <label class="form-label">
-                Last Name:
-                <input
-                    class="form-control form-control-lg"
-                    type="text"
-                    formControlName="lastName"
-                />
-            </label>
+        <div class="form-group mt-3">
+            <label class="form-label"> Last Name: </label>
+            <input
+                class="form-control"
+                type="text"
+                formControlName="lastName"
+                placeholder="Last Name"
+            />
         </div>
-        <div class="mt-3" formGroupName="address">
+        <div class="mt-5" formGroupName="address">
             <h3>Address</h3>
-            <div class="mt-3">
-                <label class="form-label">
-                    Street:
-                    <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        formControlName="street"
-                    />
-                </label>
+            <div class="mt-3 form-group mt-3">
+                <label class="form-label"> Street: </label>
+                <input
+                    class="form-control"
+                    type="text"
+                    formControlName="street"
+                    placeholder="Number and Street Name"
+                />
             </div>
             <div class="mt-3">
-                <label class="form-label">
-                    City:
-                    <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        formControlName="city"
-                    />
-                </label>
+                <label class="form-label"> City: </label>
+                <input
+                    class="form-control"
+                    type="text"
+                    formControlName="city"
+                    placeholder="City or Town"
+                />
             </div>
             <div class="mt-3">
-                <label class="form-label">
-                    State:
-                    <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        formControlName="state"
-                    />
-                </label>
+                <label class="form-label"> State/County: </label>
+                <input
+                    class="form-control"
+                    type="text"
+                    formControlName="state"
+                    placeholder="State or County"
+                />
             </div>
             <div class="mt-3">
-                <label class="form-label">
-                    Zip Code:
-                    <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        formControlName="zip"
-                    />
-                </label>
+                <label class="form-label"> Zip Code/Postcode: </label>
+                <input
+                    class="form-control"
+                    type="text"
+                    formControlName="zip"
+                    placeholder="Zip code or Postcode"
+                />
             </div>
         </div>
-        <button
-            class="btn btn-primary mt-3"
-            type="submit"
-            [disabled]="!profileForm.valid"
-        >
-            Submit
-        </button>
+
+        <div class="mt-5" formArrayName="aliases">
+            <h3>Aliases</h3>
+            <button class="btn btn-success mt-3 mb-3" (click)="addAlias()">
+                Add Alias
+            </button>
+
+            <div *ngFor="let alias of aliases.controls; let i = index">
+                <!-- The repeated alias template -->
+                <label class="form-label"> Alias: </label>
+                <input class="form-control" type="text" [formControlName]="i" />
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+            <button
+                class="btn btn-outline-primary mt-3"
+                type="submit"
+                [disabled]="!profileForm.valid"
+            >
+                Submit
+            </button>
+        </div>
     </form>
 </div>
 
 <h3 class="mt-5">Form results</h3>
 <pre>{{ profileForm.value | json }}</pre>
 <p>Form Status: {{ profileForm.valid | json }}</p>
+
+<h3 class="mt-5">Form object</h3>
+<pre>{{ profileForm.errors | json }}</pre>

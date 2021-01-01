@@ -4,6 +4,7 @@ import {
     FormControl,
     Validators,
     FormBuilder,
+    FormArray,
 } from '@angular/forms';
 
 @Component({
@@ -23,9 +24,18 @@ export class ProfileEditorComponent {
             state: [''],
             zip: [''],
         }),
+        aliases: this.fb.array([this.fb.control('')]),
     });
 
     onSubmit() {
         console.log(this.profileForm.value);
+    }
+
+    get aliases() {
+        return this.profileForm.get('aliases') as FormArray;
+    }
+
+    addAlias() {
+        this.aliases.push(this.fb.control(''));
     }
 }
