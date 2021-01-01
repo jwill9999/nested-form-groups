@@ -89,7 +89,7 @@
 
 <h3 class="mt-5">Form results</h3>
 <pre>{{ profileForm.value | json }}</pre>
-<p>Form Status: {{ profileForm.valid | json }}</p>
+<p>Form Status: {{ profileForm.status | json }}</p>
 
-<h3 class="mt-5">Form object</h3>
-<pre>{{ profileForm.errors | json }}</pre>
+<h3 class="mt-5">Error object</h3>
+<pre>{{ errors | json }}</pre>
